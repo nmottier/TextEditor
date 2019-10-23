@@ -36,10 +36,9 @@ public class BasicDocument extends Document
 	public int getNumWords()
 	{
 		List<String> tokensWord = getTokens("[a-zA-Z]+");
+		int words = tokensWord.size();
 		
-		//TODO: Implement this method in week 2 according to the comments above.  
-		// See the Module 2 support videos if you need help.
-	    return tokensWord.size();
+	    return words;
 	}
 	
 	/**
@@ -61,7 +60,8 @@ public class BasicDocument extends Document
         // if you need help.
 		
 		List<String> tokensSen = getTokens("[^!.?]+");
-        return tokensSen.size();
+		int sentances = tokensSen.size();
+        return sentances;
 	}
 	
 	/**
@@ -91,8 +91,9 @@ public class BasicDocument extends Document
 		List<String> loneEs = getTokens("[^aeiouyAEIOUY]+[eE]\\b");
 		List<String> singleEs = getTokens("\\b[^aeiouyAEIOUY]*[eE]\\b");
 		
+		int syllables = tokens.size() - (loneEs.size() - singleEs.size());
 		
-		return tokens.size() - (loneEs.size() - singleEs.size());
+		return syllables;
 		
 		
 	}
