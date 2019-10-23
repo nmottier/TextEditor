@@ -13,6 +13,7 @@ public class BasicDocument extends Document
 	 * @param text The full text of the Document.
 	 */
 	public BasicDocument(String text)
+	
 	{
 		super(text);
 	}
