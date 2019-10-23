@@ -93,6 +93,7 @@ public class BasicDocument extends Document
 		
 		return tokens.size() - (loneEs.size() - singleEs.size());
 		
+		
 	}
 	
 	
