@@ -134,6 +134,7 @@ public abstract class Document {
 		double numTwo = (double) getNumSyllables()/getNumWords();
 	    double fleschScore = 206.835-(1.015*numOne)-(84.6*numTwo);
 	    return fleschScore;
+	    
 	}
 	
 	
