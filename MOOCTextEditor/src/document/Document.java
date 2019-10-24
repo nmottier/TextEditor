@@ -130,7 +130,9 @@ public abstract class Document {
 	/** return the Flesch readability score of this document */
 	public double getFleschScore()
 	{
-	    double fleschScore = 206.835-(1.015*(getNumWords()/(double) getNumSentences()))-(84.6*(getNumSyllables()/(double) getNumWords()));
+		double numOne = (double) getNumWords()/getNumSentences();
+		double numTwo = (double) getNumSyllables()/getNumWords();
+	    double fleschScore = 206.835-(1.015*numOne)-(84.6*numTwo);
 	    return fleschScore;
 	}
 	
