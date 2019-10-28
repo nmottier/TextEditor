@@ -37,9 +37,20 @@ public class DocumentBenchmarking {
 		// TODO: Fill in the rest of this method so that it runs two loops
 		// and prints out timing results as described in the assignment 
 		// instructions and following the pseudocode below.
+		System.out.println("Size	BasicDocument	EfficientDocument");
+		String fileName;
 		for (int numToCheck = start; numToCheck < numSteps*increment + start; 
-				numToCheck += increment)
-		{
+				numToCheck += increment) {
+			fileName = "BasicDocument";
+			System.out.println(numToCheck + "    ");
+			getStringFromFile(fileName, numToCheck);
+			for(int i = 0; trials > i; i++) {
+				
+			}
+
+			
+		
+			
 			// numToCheck holds the number of characters that you should read from the 
 			// file to create both a BasicDocument and an EfficientDocument.  
 			
