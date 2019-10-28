@@ -45,6 +45,8 @@ public class DocumentBenchmarking {
 			System.out.println(numToCheck + "    ");
 			getStringFromFile(fileName, numToCheck);
 			for(int i = 0; trials > i; i++) {
+				BasicDocument b = new BasicDocument(fileName);
+				
 				
 			}
 
