@@ -37,26 +37,33 @@ public class DocumentBenchmarking {
 		// TODO: Fill in the rest of this method so that it runs two loops
 		// and prints out timing results as described in the assignment 
 		// instructions and following the pseudocode below.
-		System.out.println("Size\tBasicDocument\tEfficientDocument");
+		System.out.println("Size\t\tBasicDocument\t\t\tEfficientDocument");
 		for (int numToCheck = start; numToCheck < numSteps*increment + start; 
 				numToCheck += increment) {
 			getStringFromFile(textfile, numToCheck);
 			//System.out.println(numToCheck + "    ");
+			double timeNano = System.nanoTime();
+			double timeSec = timeNano / 1000000000;
 			for(int i = 0; trials > i; i++) {
 				BasicDocument b = new BasicDocument(textfile);
 				b.getFleschScore();
 			}
-			long timeNano1 = System.nanoTime();
-			long timeSec1 = timeNano1 / 1000000000;
+			double timeNano1 = System.nanoTime();
+			double timeSec1 = timeNano1 / 1000000000;
+			double  timeDif1 = timeSec1 - timeSec;
 			
+			double timeNano3 = System.nanoTime();
+			double timeSec3 = timeNano3 / 1000000000;
 			for(int ii = 0; trials < ii; ii++) {
 				EfficientDocument e = new EfficientDocument(textfile);
 				e.getFleschScore();
 				}
-			long timeNano2 = System.nanoTime();
-			long timeSec2 = timeNano2 / 1000000000;
+			
+			double timeNano2 = System.nanoTime();
+			double timeSec2 = timeNano2 / 1000000000;
+			double timeDif2 = timeSec2 - timeSec3;
 			System.out.print(numToCheck + "\t\t");
-			System.out.println(timeSec1 + "\t\t" + timeSec2);
+			System.out.println(timeDif1 + "\t\t" + timeDif2);
 				
 			}
 
