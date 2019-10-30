@@ -51,16 +51,25 @@ public class EfficientDocument extends Document {
 		// MAKE SURE YOU UNDERSTAND THIS LINE BEFORE YOU CODE THE REST
 		// OF THIS METHOD.
 		List<String> tokens = getTokens("[!?.]+|[a-zA-Z]+");
-		numWords = getNumWords();
-		numSentences = getNumSentences();
-		numSyllables = getNumSyllables();
+			
+		for(int i = 0; tokens.size() > 0; i++) {
+			boolean b = isWord(tokens.get(i));
+			if (b == true) {
+				numWords++;
+				numSyllables++;		
+			}
+			if (b == false) {
+				numSentences++;
+			}
 		
+		}
+	}
+	
 		
 		
 		// TODO: Finish this method.  Remember the countSyllables method from 
 		// Document.  That will come in handy here.  isWord defined above will also help.
 		
-	}
 
 	
 	/**
@@ -79,9 +88,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumSentences() {
 		//TODO: write this method.  Hint: It's simple
-		List<String> tokensSen = getTokens("[^!.?]+");
-		int sentances = tokensSen.size();
-		return sentances;
+		return numSentences;
 	}
 
 	
@@ -102,11 +109,8 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumWords() {
 		//TODO: write this method.  Hint: It's simple
+		return numWords;
 		
-		List<String> tokensWord = getTokens("[a-zA-Z]+");
-		int words = tokensWord.size();
-		
-	    return words;
 	}
 
 
@@ -128,13 +132,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumSyllables() {
         //TODO: write this method.  Hint: It's simple
-		List<String> tokens = getTokens("[aeiouyAEIOUY]+");
-		List<String> loneEs = getTokens("[^aeiouyAEIOUY]+[eE]\\b");
-		List<String> singleEs = getTokens("\\b[^aeiouyAEIOUY]*[eE]\\b");
-		
-		int syllables = tokens.size() - (loneEs.size() - singleEs.size());
-		
-        return syllables;
+        return numSyllables;
 	}
 	
 	// Can be used for testing
