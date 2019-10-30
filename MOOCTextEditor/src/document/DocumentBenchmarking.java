@@ -37,16 +37,26 @@ public class DocumentBenchmarking {
 		// TODO: Fill in the rest of this method so that it runs two loops
 		// and prints out timing results as described in the assignment 
 		// instructions and following the pseudocode below.
-		System.out.println("Size	BasicDocument	EfficientDocument");
-		String fileName;
+		System.out.println("Size\tBasicDocument\tEfficientDocument");
 		for (int numToCheck = start; numToCheck < numSteps*increment + start; 
 				numToCheck += increment) {
-			fileName = "BasicDocument";
-			System.out.println(numToCheck + "    ");
-			getStringFromFile(fileName, numToCheck);
+			getStringFromFile(textfile, numToCheck);
+			//System.out.println(numToCheck + "    ");
 			for(int i = 0; trials > i; i++) {
-				BasicDocument b = new BasicDocument(fileName);
-				
+				BasicDocument b = new BasicDocument(textfile);
+				b.getFleschScore();
+			}
+			long timeNano1 = System.nanoTime();
+			long timeSec1 = timeNano1 / 1000000000;
+			
+			for(int ii = 0; trials < ii; ii++) {
+				EfficientDocument e = new EfficientDocument(textfile);
+				e.getFleschScore();
+				}
+			long timeNano2 = System.nanoTime();
+			long timeSec2 = timeNano2 / 1000000000;
+			System.out.print(numToCheck + "\t\t");
+			System.out.println(timeSec1 + "\t\t" + timeSec2);
 				
 			}
 
@@ -74,7 +84,7 @@ public class DocumentBenchmarking {
 			 
 		}
 	
-	}
+	
 	
 	/** Get a specified number of characters from a text file
 	 * 
