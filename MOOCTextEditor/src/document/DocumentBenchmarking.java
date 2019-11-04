@@ -54,7 +54,7 @@ public class DocumentBenchmarking {
 			
 			double timeNano3 = System.nanoTime();
 			double timeSec3 = timeNano3 / 1000000000;
-			for(int ii = 0; trials < ii; ii++) {
+			for(int ii = 0; trials > ii; ii++) {
 				EfficientDocument e = new EfficientDocument(textfile);
 				e.getFleschScore();
 				}

@@ -52,7 +52,7 @@ public class EfficientDocument extends Document {
 		// OF THIS METHOD.
 		List<String> tokens = getTokens("[!?.]+|[a-zA-Z]+");
 			
-		for(int i = 0; tokens.size() > 0; i++) {
+		for(int i = 0; tokens.size() < 0; i++) {
 			boolean b = isWord(tokens.get(i));
 			if (b == true) {
 				numWords++;
