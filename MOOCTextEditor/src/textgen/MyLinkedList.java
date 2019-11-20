@@ -16,7 +16,12 @@ public class MyLinkedList<E> extends AbstractList<E> {
 
 	/** Create a new empty LinkedList */
 	public MyLinkedList() {
-		// TODO: Implement this method
+
+		size = 0;
+		head = new LLNode<E> (null);
+		tail = new LLNode<E> (null);
+		head.next = tail;
+		tail.prev = head;
 	}
 
 	/**
@@ -25,7 +30,11 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 */
 	public boolean add(E element ) 
 	{
-		// TODO: Implement this method
+		LLNode<E> newNode = new LLNode(element);
+		newNode = head.next;
+		head = newNode;
+		size++;
+		
 		return false;
 	}
 
@@ -34,7 +43,17 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E get(int index) 
 	{
 		// TODO: Implement this method.
-		return null;
+		LLNode<E> thisOne = head; 
+        int count = 0; /* index of Node we are 
+                          currently looking at */
+        while (thisOne != null) 
+        { 
+            if (count == index) 
+                return thisOne.data; 
+            count++; 
+            thisOne = thisOne.next;
+        }
+        return null;
 	}
 
 	/**
