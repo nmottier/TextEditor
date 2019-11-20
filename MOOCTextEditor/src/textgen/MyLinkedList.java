@@ -40,21 +40,21 @@ public class MyLinkedList<E> extends AbstractList<E> {
 
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
-	public E get(int index) 
-	{
-		// TODO: Implement this method.
-		LLNode<E> thisOne = head; 
-        int count = 0; /* index of Node we are 
-                          currently looking at */
-        while (thisOne != null) 
-        { 
-            if (count == index) 
-                return thisOne.data; 
-            count++; 
-            thisOne = thisOne.next;
+	public E get(int index) {
+
+		LLNode<E> value = head; 
+        int count = 0;
+        
+        while (value.next != null) { 
+            if (count == index) {
+                return value.data; 
+            }
+            count++;
+            value = value.next;
         }
-        return null;
+        	return null;
 	}
+        
 
 	/**
 	 * Add an element to the list at the specified index
@@ -64,6 +64,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public void add(int index, E element ) 
 	{
 		// TODO: Implement this method
+		
 	}
 
 
