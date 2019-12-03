@@ -17,7 +17,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Create a new empty LinkedList */
 	public MyLinkedList() {
 
-		size = 0;
 		head = new LLNode<E> (null);
 		tail = new LLNode<E> (null);
 		head.next = tail;
@@ -28,11 +27,16 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * Appends an element to the end of the list
 	 * @param element The element to add
 	 */
-	public boolean add(E element ) 
-	{
-		LLNode<E> newNode = new LLNode(element);
-		newNode = head.next;
-		head = newNode;
+	public boolean add(E element ) {
+		
+		if (element == null) throw new NullPointerException("Cannot be null!");
+		
+		LLNode<E> newNode = new LLNode<E>(element);
+
+		newNode.prev = tail.prev;
+		newNode.prev.next = newNode;
+		newNode.next = tail;
+		tail.prev = newNode;
 		size++;
 		
 		return false;
@@ -42,17 +46,13 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	public E get(int index) {
 
-		LLNode<E> value = head; 
-        int count = 0;
+		if (index < 0) throw new IndexOutOfBoundsException("Cannot be negative!");
+		if (index >= size) throw new IndexOutOfBoundsException("Cannot be greater than the list!");
         
-        while (value.next != null) { 
-            if (count == index) {
-                return value.data; 
-            }
-            count++;
-            value = value.next;
-        }
-        	return null;
+		LLNode<E> newNode = find(index);
+		return newNode.data;
+		
+		return null;
 	}
         
 
@@ -65,6 +65,21 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	{
 		// TODO: Implement this method
 		
+		if (element == null) throw new NullPointerException("Cannot be null!");
+		if (index > size) throw new IndexOutOfBoundsException("Cannot be greater than the list!");
+		if (index < 0) throw new IndexOutOfBoundsException("Cannot be negative!");
+		
+		if (index == size) add(element);
+		else {
+			LLNode<E> node = find(index);
+			
+			LLNode<E> node0 = new LLNode<E>(element);
+			node0.prev = node.prev;
+			node0.next = node;
+			node.prev = node0;
+			node0.prev.next = node0;
+			
+			size++;
 	}
 
 
