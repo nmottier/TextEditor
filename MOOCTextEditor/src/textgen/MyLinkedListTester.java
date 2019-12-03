@@ -125,6 +125,20 @@ public class MyLinkedListTester {
 	{
         // TODO: implement this test
 		
+		try {
+			shortList.add(null);
+			fail("Check null pointer");
+		}
+		catch (NullPointerException e) {
+			
+		}
+
+		assertEquals("Check last", "B", shortList.get(shortList.size()-1));
+		
+		shortList.add("A");
+		assertEquals("Check last", "A", shortList.get(shortList.size()-1));
+		
+		
 	}
 
 	
@@ -133,6 +147,24 @@ public class MyLinkedListTester {
 	public void testSize()
 	{
 		// TODO: implement this test
+		
+		assertEquals("Size: check size is correct", 10, longerList.size());
+		
+		longerList.add(5);
+		longerList.add(5);
+		longerList.add(5);
+		longerList.add(5);
+		longerList.add(5);
+
+		
+		assertEquals("Size: check size is correct", 15, longerList.size());
+
+		longerList.remove(0);
+		longerList.remove(0);
+		longerList.remove(0);
+		longerList.remove(0);
+		
+		assertEquals("Size: check size is correct", 11, longerList.size());
 	}
 
 	
@@ -146,6 +178,31 @@ public class MyLinkedListTester {
 	{
         // TODO: implement this test
 		
+		try {
+			shortList.add(-1,"A");
+			fail("Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e) {
+			
+		}
+		
+		try {
+			shortList.add(10,"Z");
+			fail("Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e) {
+			
+		}
+		
+		shortList.add(0,"Z");
+		shortList.add(0,"Y");
+		shortList.add(2,"X");
+		
+		
+		assertEquals("Check first", "Z", shortList.get(0));
+		assertEquals("Check second", "Y", shortList.get(1));
+		assertEquals("Check third", "X", shortList.get(2));
+		
 	}
 	
 	/** Test setting an element in the list */
@@ -153,6 +210,38 @@ public class MyLinkedListTester {
 	public void testSet()
 	{
 	    // TODO: implement this test
+		
+		try {
+			shortList.set(-1,"A");
+			fail("Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e) {
+			
+		}
+		
+		try {
+			shortList.set(10,"Z");
+			fail("Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e) {
+			
+		}
+
+		
+		shortList.add("A");
+		shortList.add("C");
+		shortList.add("E");
+		shortList.add("G");
+		shortList.add("I");
+		shortList.add("K");
+		
+		shortList.set(0,"B");
+		shortList.set(4,"D");
+		shortList.set(2,"F");
+		
+		assertEquals("Check first", "B", shortList.get(0));
+		assertEquals("Check fifth", "D", shortList.get(4));
+		assertEquals("Check third", "F", shortList.get(2));
 	    
 	}
 	
