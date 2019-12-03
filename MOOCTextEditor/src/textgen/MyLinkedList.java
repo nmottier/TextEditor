@@ -123,7 +123,14 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E set(int index, E element) 
 	{
 		// TODO: Implement this method
-		return null;
+		
+		if (element == null) throw new NullPointerException("Cannot be null!");
+		if (index >= size) throw new IndexOutOfBoundsException("Cannot be greater than the list!");
+		if (index < 0) throw new IndexOutOfBoundsException("Cannot be negative!");
+		
+		LLNode<E> newNode = find(index);
+		newNode.data = element;
+		return newNode.data;
 	}   
 }
 
