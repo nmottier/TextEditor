@@ -80,6 +80,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			node0.prev.next = node0;
 			
 			size++;
+		}
 	}
 
 
@@ -87,7 +88,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public int size() 
 	{
 		// TODO: Implement this method
-		return -1;
+		return size;
 	}
 
 	/** Remove a node at the specified index and return its data element.
@@ -99,7 +100,17 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E remove(int index) 
 	{
 		// TODO: Implement this method
-		return null;
+		
+		if (index >= size) throw new IndexOutOfBoundsException("Cannot be greater than the list!");
+		if (index < 0) throw new IndexOutOfBoundsException("Cannot be negative!");
+		
+		LLNode<E> newNode = find(index);
+		E data = newNode.data;
+		newNode.prev.next = newNode.next;
+		newNode.next.prev = newNode.prev;
+		size = size - 1;
+		
+		return data;
 	}
 
 	/**
