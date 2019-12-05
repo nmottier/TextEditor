@@ -42,7 +42,7 @@ public class DictionaryBST implements Dictionary
     	boolean foundWord = false;
     	foundWord = dict.contains(word);
     	
-    	return found;
+    	return foundWord;
     }
 
     /** Is this a word according to this dictionary? */
