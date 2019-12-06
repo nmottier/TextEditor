@@ -153,7 +153,39 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
     	 //       Add all of its child nodes to the back of the queue
     	 // Return the list of completions
     	 
-         return null;
+    	TrieNode curr = root;
+   		
+    	TrieNode next;
+   		
+   		List<String> theList = new LinkedList<String>();
+   		
+   		for (Character x : prefix.toCharArray())
+   		{
+   			next = curr.getChild(x);
+   			if (next == null)
+   			{
+   				return theList;
+   			}
+   			curr = next;
+   		}
+   		LinkedList<TrieNode> theQueue = new LinkedList<TrieNode>();
+  		
+   		theQueue.add(curr);
+  		while(numCompletions > 0 && !theQueue.isEmpty()) {
+  			
+  			next = theQueue.removeFirst();
+  			if (next.endsWord()) {
+  				theList.add(next.getText());
+  				numCompletions = numCompletions-1;
+  			}
+  			for (Character xx : next.getValidNextCharacters()) 
+  			{
+  				theQueue.add(next.getChild(xx));
+  			}
+  		}
+  	
+      	 
+         return theList;
      }
 
  	// For debugging
