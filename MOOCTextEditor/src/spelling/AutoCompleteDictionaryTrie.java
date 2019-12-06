@@ -40,7 +40,33 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public boolean addWord(String word)
 	{
 	    //TODO: Implement this method.
-	    return false;
+		
+		TrieNode curr = root;
+		
+		word = word.toLowerCase();
+		
+		if (isWord(word)) {
+		for (int i = 0; i < word.length(); i++) {
+			Character chara = word.charAt(i);
+			if (nextChar(curr, chara)) {
+				curr = curr.getChild(chara);//move on if yes
+				if (i == word.length()-1) {
+					curr.setEndsWord(true);
+					size++;
+					return true;
+				}
+			}
+			else {
+				curr = curr.insert(chara);
+				if (i == word.length()-1) {
+					curr.setEndsWord(true);
+					size++;
+					return true;
+			}
+	}
+		}
+	}
+	    return true;
 	}
 	
 	/** 
@@ -50,7 +76,7 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public int size()
 	{
 	    //TODO: Implement this method
-	    return 0;
+	    return size;
 	}
 	
 	
@@ -60,9 +86,33 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public boolean isWord(String s) 
 	{
 	    // TODO: Implement this method
-		return false;
-	}
+		boolean nope = false;
+		TrieNode curr = root;
+	    // TODO: Implement this method
+		//System.out.println(s.charAt(0));
+		s = s.toLowerCase();
+		for (int i = 0; i < s.length(); i++) {
+			Character x = s.charAt(i);
+			if (curr.getChild(x) == null) {
+				nope = false;
+			}
+			else {
+				curr = curr.getChild(x);
+				if (i == s.length()-1) {
+					if (curr.endsWord()) nope = true;
+				}
+			}
+			
+		}
+		return nope;
 
+}
+	
+	private boolean nextChar(TrieNode o, Character x) {
+		
+		if (o.getChild(x) == null) return false;
+		return true;
+	}
 	/** 
      * Return a list, in order of increasing (non-decreasing) word length,
      * containing the numCompletions shortest legal completions 
@@ -84,6 +134,8 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
      * @param numCompletions The maximum number of predictions desired.
      * @return A list containing the up to numCompletions best predictions
      */@Override
+     
+     
      public List<String> predictCompletions(String prefix, int numCompletions) 
      {
     	 // TODO: Implement this method
