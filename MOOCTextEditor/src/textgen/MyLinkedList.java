@@ -128,6 +128,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		noNode.prev.next = noNode.next;
 		size = size - 1;
 		return noNode.data;
+		
+		//finally got it
 	}
 
 	/**
