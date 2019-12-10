@@ -149,10 +149,15 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		}
 		if (index < 0) 
 			throw new IndexOutOfBoundsException("Cannot be negative!");
+		
+	LLNode<E> theNode = head;
+	for (int i = 0; i <= index; i++) {
+		theNode = theNode.next;
 	}
-		LLNode<E> newNode = find(index);
-		newNode.data = element;
-		return newNode.data;
+	theNode.data = element;
+	
+	// TODO: Implement this method
+	return element;
 	}   
 }
 
