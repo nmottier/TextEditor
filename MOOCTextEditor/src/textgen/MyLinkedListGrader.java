@@ -16,7 +16,7 @@ public class MyLinkedListGrader {
 			curr = lst.head.next;
 		else
 			curr = lst.head;
-		
+		 
 		while (curr != null && curr.data != null)
 		{
 			ret += curr.data;

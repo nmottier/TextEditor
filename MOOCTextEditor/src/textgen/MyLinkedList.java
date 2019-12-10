@@ -27,32 +27,64 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * Appends an element to the end of the list
 	 * @param element The element to add
 	 */
-	public boolean add(E element ) {
+	
+	public boolean add(E element ) 
+	{
 		
-		if (element == null) throw new NullPointerException("Cannot be null!");
+		if (element == null) {
+			throw new NullPointerException("Invalid input");
+		}
 		
-		LLNode<E> newNode = new LLNode<E>(element);
+		// TODO: Implement this method
+		LLNode<E> addedNode = new LLNode<E>(element);
+		LLNode<E> previous = tail.prev;
+		previous.next = addedNode;
+		addedNode.prev = previous;
+		addedNode.next = tail;
+		tail.prev = addedNode;
+		size++;
+		return true;
+	}
+	
+	public void add(int x,E element ) {
+		
+		if (element == null) 
+			throw new NullPointerException("Cannot be null!");
+		
+		LLNode<E> addedNode = new LLNode<E>(element);
 
-		newNode.prev = tail.prev;
-		newNode.prev.next = newNode;
-		newNode.next = tail;
-		tail.prev = newNode;
+		LLNode<E> newNode = head;
+		for (int i = 0; i <= x; i++) {
+			newNode = newNode.next;
+		}
+		
+		LLNode<E> prev = newNode.prev;
+		prev.next = addedNode;
+		addedNode.prev = prev;
+		addedNode.next = newNode;
+		newNode.prev = addedNode;
 		size++;
 		
-		return false;
 	}
 
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	public E get(int index) {
 
-		if (index < 0) throw new IndexOutOfBoundsException("Cannot be negative!");
-		if (index >= size) throw new IndexOutOfBoundsException("Cannot be greater than the list!");
-        
-		LLNode<E> newNode = find(index);
-		return newNode.data;
+		if (index < 0) {
+			throw new IndexOutOfBoundsException("Cannot be negative!");
+		}
+		if (index >= size) {
+			throw new IndexOutOfBoundsException("Cannot be greater than the list!");
+		}
+		LLNode<E> theNode = head.next;
+		while (index > 0) {
+			theNode = theNode.next;
+			index = index - 1;
+		}
+
+		return theNode.data;
 		
-		return null;
 	}
         
 
@@ -61,27 +93,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * @param The index where the element should be added
 	 * @param element The element to add
 	 */
-	public void add(int index, E element ) 
-	{
-		// TODO: Implement this method
-		
-		if (element == null) throw new NullPointerException("Cannot be null!");
-		if (index > size) throw new IndexOutOfBoundsException("Cannot be greater than the list!");
-		if (index < 0) throw new IndexOutOfBoundsException("Cannot be negative!");
-		
-		if (index == size) add(element);
-		else {
-			LLNode<E> node = find(index);
-			
-			LLNode<E> node0 = new LLNode<E>(element);
-			node0.prev = node.prev;
-			node0.next = node;
-			node.prev = node0;
-			node0.prev.next = node0;
-			
-			size++;
-		}
-	}
+
 
 
 	/** Return the size of the list */
@@ -101,16 +113,21 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	{
 		// TODO: Implement this method
 		
-		if (index >= size) throw new IndexOutOfBoundsException("Cannot be greater than the list!");
-		if (index < 0) throw new IndexOutOfBoundsException("Cannot be negative!");
-		
-		LLNode<E> newNode = find(index);
-		E data = newNode.data;
-		newNode.prev.next = newNode.next;
-		newNode.next.prev = newNode.prev;
+		if (index >= size) {
+			throw new IndexOutOfBoundsException("Cannot be greater than the list!");
+		}
+		if (index < 0) {
+			throw new IndexOutOfBoundsException("Cannot be negative!");
+		}
+		LLNode<E> noNode = head.next;
+		while (index > 0) {
+			noNode = noNode.next;
+			index = index - 1;
+		}
+		noNode.next.prev = noNode.prev;
+		noNode.prev.next = noNode.next;
 		size = size - 1;
-		
-		return data;
+		return noNode.data;
 	}
 
 	/**
@@ -124,10 +141,15 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	{
 		// TODO: Implement this method
 		
-		if (element == null) throw new NullPointerException("Cannot be null!");
-		if (index >= size) throw new IndexOutOfBoundsException("Cannot be greater than the list!");
-		if (index < 0) throw new IndexOutOfBoundsException("Cannot be negative!");
-		
+		if (element == null) {
+			throw new NullPointerException("Cannot be null!");
+		}
+		if (index >= size) {
+			throw new IndexOutOfBoundsException("Cannot be greater than the list!");
+		}
+		if (index < 0) 
+			throw new IndexOutOfBoundsException("Cannot be negative!");
+	}
 		LLNode<E> newNode = find(index);
 		newNode.data = element;
 		return newNode.data;
